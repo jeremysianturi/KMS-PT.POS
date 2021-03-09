@@ -1,0 +1,12 @@
+<resources>
+  <string name="app_name">KMS_PT_POS_INDONESIA</string>
+  <string name="tv_infinites">InfiniteS</string>
+  <string name="tv_wahana">Wahana</string>
+  <string name="tv_artikel">Artikel</string>
+  <string name="tv_karya_tulis_ilmiah">Karya Tulis / Ilmiah</string>
+  <string name="tv_disemilasi">Diseminasi</string>
+  <string name="tv_filter">Filter</string>
+  <string name="tv_pengarang">Pengarang |</string>
+  <string name="tv_tanggal_terbitan">Tanggal Terbitan |</string>
+  <string name="tv_kategori">Kategori</string>
+</resources>

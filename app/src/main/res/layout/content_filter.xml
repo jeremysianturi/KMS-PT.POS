@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="5dp"
+        android:text="@string/tv_filter"
+        android:textColor="@color/text_filter" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_filter_pengarang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="5dp"
+        android:text="@string/tv_pengarang"
+        android:textColor="@color/text_filter" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_filter_tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="5dp"
+        android:text="@string/tv_tanggal_terbitan"
+        android:textColor="@color/text_filter" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_filter_kategori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="5dp"
+        android:text="@string/tv_kategori"
+        android:textColor="@color/text_filter" />
+
+</LinearLayout>
