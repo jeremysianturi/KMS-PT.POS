@@ -15,10 +15,15 @@
 
     <!--  text Color-->
     <color name="text_white">#F2F2F2</color>
-    <color name="black_text">#FF000000</color>
     <color name="text_filter">#2F80ED</color>
+
+    <color name="black_text">#FF000000</color>
+    <color name="black_text_tittle_list">#36455A</color>
+    <color name="black_text_tittle_list_item">#A1A8B9</color>
+    <color name="black_text_content_list_item">#495566</color>
 
 
     <!--  background color -->
     <color name="bg_grey">#F2F2F2</color>
+    <color name="bg_green_button">#2DDA93</color>
 </resources>

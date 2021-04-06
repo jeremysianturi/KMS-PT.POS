@@ -14,4 +14,28 @@
         <item name="android:paddingBottom">8dp</item>
     </style>
 
+    <style name="tv_title_list" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/black_text_tittle_list</item>
+        <item name="android:fontFamily">@font/sf_protext_bold</item>
+    </style>
+
+    <style name="tv_title_list_item" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_text_tittle_list_item</item>
+        <item name="android:fontFamily">@font/sf_protext_medium</item>
+    </style>
+
+    <style name="tv_content_list_item" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_text_content_list_item</item>
+    </style>
+
+    <style name="tv_date_list_item" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black_text_tittle_list_item</item>
+        <item name="android:fontFamily">@font/sf_protext_medium</item>
+    </style>
+
+
 </resources>
