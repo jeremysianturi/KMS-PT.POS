@@ -11,7 +11,9 @@
         android:theme="@style/Theme.KMS_PT_POS_INDONESIA">
         <activity android:name=".ui.multimedia.MultimediaActivity"></activity>
         <activity android:name=".ui.wahana.detailArticle.DetailArticleActivity" />
-        <activity android:name=".ui.wahana.article.ArtikelActivity" />
+        <activity
+            android:name=".ui.wahana.article.ArtikelActivity"
+            android:theme="@style/Theme.KMS_PT_POS_INDONESIA.NoActionBar" />
         <activity
             android:name=".ui.wahana.WahanaActivity"
             android:theme="@style/Theme.KMS_PT_POS_INDONESIA.NoActionBar" />

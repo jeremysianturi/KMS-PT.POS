@@ -1,6 +1,6 @@
-package com.pos.lms.core.data
+package com.pos.lms.kms_pt_pos_indonesia.data
 
-import com.pos.lms.core.data.source.remote.network.ApiResponse
+import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.ApiResponse
 import kotlinx.coroutines.flow.*
 
  abstract class NetworkBoundResourceWithDeleteLocalData<ResultType, RequestType> {

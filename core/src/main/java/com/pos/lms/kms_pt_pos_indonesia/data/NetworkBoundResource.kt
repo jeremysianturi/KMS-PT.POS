@@ -1,6 +1,5 @@
 package com.pos.lms.kms_pt_pos_indonesia.data
 
-import com.pos.lms.core.data.Resource
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.ApiResponse
 import kotlinx.coroutines.flow.*
 

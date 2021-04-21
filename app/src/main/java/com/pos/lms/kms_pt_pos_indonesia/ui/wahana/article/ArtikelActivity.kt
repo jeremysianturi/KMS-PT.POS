@@ -1,7 +1,7 @@
 package com.pos.lms.kms_pt_pos_indonesia.ui.wahana.article
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.pos.lms.kms_pt_pos_indonesia.R
 import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityArtikelBinding
 
@@ -19,6 +19,14 @@ class ArtikelActivity : AppCompatActivity() {
     }
 
     private fun toolbarSetup() {
+
+        binding.layoutToolbar.apply {
+            ivNavigationBack.setOnClickListener {
+                onBackPressed()
+            }
+            tvTittle1.text = getString(R.string.tv_infinites)
+            tvTittle2.text = getString(R.string.tv_artikel)
+        }
 
     }
 }
