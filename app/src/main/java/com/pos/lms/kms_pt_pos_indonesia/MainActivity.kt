@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
+// abi ho
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
