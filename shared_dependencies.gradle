@@ -38,4 +38,10 @@ dependencies {
 
     // viewbinding delegate
     implementation 'com.github.yogacp:android-viewbinding:1.0.2'
+
+    // fast android networking
+    implementation "com.amitshekhar.android:android-networking:$fan_version"
+
+    // file picker
+    implementation "com.github.onimur:handle-path-oz:$file_picker"
 }

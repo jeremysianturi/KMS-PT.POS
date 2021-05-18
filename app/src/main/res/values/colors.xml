@@ -26,4 +26,8 @@
     <!--  background color -->
     <color name="bg_grey">#F2F2F2</color>
     <color name="bg_green_button">#2DDA93</color>
+    <color name="colorRedDelete">#B00020</color>
+    <color name="colorLineGrey">#17212121</color>
+
+
 </resources>

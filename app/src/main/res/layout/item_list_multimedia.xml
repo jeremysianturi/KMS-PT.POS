@@ -1,132 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="3dp"
-    app:cardCornerRadius="15dp"
+    android:elevation="2dp"
+    android:padding="@dimen/margin_4"
+    app:cardCornerRadius="@dimen/margin_8"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="1dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/constraint1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_multimedia"
+            android:id="@+id/iv_content_multimedia"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:contentDescription="@string/content_description_image"
+            android:src="@drawable/dummy_images"
             android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dummy_img_video" />
+
+            app:layout_constraintStart_toStartOf="@id/constraint1"
+            app:layout_constraintEnd_toEndOf="@id/constraint1"
+            app:layout_constraintTop_toTopOf="@id/constraint1"
+            app:layout_constraintBottom_toTopOf="@id/ll1">
+        </ImageView>
 
         <LinearLayout
-            android:id="@+id/ln_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_transparent_corner"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_multimedia"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/tv_title_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                tools:text="Video" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ln_duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_transparent_corner"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_multimedia"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/tv_title_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                tools:text="13:30" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_tittle_video"
-            style="@style/tv_title_list_item"
+            android:id="@+id/ll1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            android:text="Panduan Standar Operasional untuk Aplikasi Bagi Karyawan Baru"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_multimedia" />
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/margin_4"
+            android:padding="@dimen/margin_4"
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView4"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/dummy_profile"
-            app:layout_constraintStart_toStartOf="@+id/tv_tittle_video"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tittle_video" />
+            app:layout_constraintStart_toStartOf="@id/constraint1"
+            app:layout_constraintEnd_toEndOf="@id/constraint1"
+            app:layout_constraintTop_toBottomOf="@id/iv_content_multimedia"
+            app:layout_constraintBottom_toBottomOf="@id/constraint1">
 
-        <TextView
-            android:id="@+id/tv_name_multimedia"
-            style="@style/tv_content_list_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:text="Tonggo Marbun"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tittle_video" />
+            <TextView
+                android:id="@+id/tv_contenttitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name">
+            </TextView>
 
-        <TextView
-            android:id="@+id/tv_date_multimedia"
-            style="@style/tv_date_list_item"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="2021.03.18"
-            app:layout_constraintStart_toStartOf="@+id/tv_name_multimedia"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_multimedia" />
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-        <ImageView
-            android:id="@+id/iv_like_multimedia"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date_multimedia"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_name_multimedia"
-            app:srcCompat="@drawable/ic_like" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_profilepic"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_70"
+                    android:src="@drawable/dummy_profile"
+                    android:layout_weight="1.7"
+                    android:layout_gravity="center">
+                </de.hdodenhof.circleimageview.CircleImageView>
 
-        <ImageView
-            android:id="@+id/iv_save_multimedia"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date_multimedia"
-            app:layout_constraintEnd_toStartOf="@+id/iv_like_multimedia"
-            app:layout_constraintTop_toTopOf="@+id/tv_name_multimedia"
-            app:srcCompat="@drawable/ic_save" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.3"
+                    android:layout_gravity="center"
+                    android:weightSum="2"
+                    android:padding="@dimen/margin_4">
 
+                    <TextView
+                        android:id="@+id/tv_name_multimedia"
+                        style="@style/tv_content_list_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name">
+                    </TextView>
 
+                    <TextView
+                        android:id="@+id/tv_date_multimedia"
+                        style="@style/tv_date_list_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name">
+                    </TextView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

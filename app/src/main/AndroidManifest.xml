@@ -2,14 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pos.lms.kms_pt_pos_indonesia">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KMS_PT_POS_INDONESIA">
-        <activity android:name=".ui.multimedia.MultimediaActivity"></activity>
+        <activity android:name=".ui.wahana.createwahana.CreateWahanaActivity"></activity>
+        <activity android:name=".ui.inbox.InboxActivity"/>
+        <activity android:name=".ui.multimedia.detailmultimedia.DetailMultimediaActivity" />
+        <activity android:name=".ui.digilab.detaildigilab.DetailDigilabActivity" />
+        <activity android:name=".util.PdfViewActivity" />
+        <activity android:name=".util.VideoPlayerActivity" />
+        <activity android:name=".ui.wahana.detailwahana.DetailWahanaActivity" />
+        <activity android:name=".ui.digilab.DigilabActivity" />
+        <activity android:name=".ui.splash.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.multimedia.MultimediaActivity" />
         <activity android:name=".ui.wahana.detailArticle.DetailArticleActivity" />
         <activity
             android:name=".ui.wahana.article.ArtikelActivity"
@@ -17,13 +37,7 @@
         <activity
             android:name=".ui.wahana.WahanaActivity"
             android:theme="@style/Theme.KMS_PT_POS_INDONESIA.NoActionBar" />
-        <activity android:name=".ui.home.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

@@ -14,9 +14,17 @@
         <item name="android:paddingBottom">8dp</item>
     </style>
 
+
+    <!--    TEXT VIEW STYLE -->
     <style name="tv_title_list" parent="TextAppearance.AppCompat.Medium" >
         <item name="android:textSize">17sp</item>
-        <item name="android:textColor">@color/black_text_tittle_list</item>
+        <item name="android:textColor">@color/black_text</item>
+        <item name="android:fontFamily">@font/sf_protext_bold</item>
+    </style>
+
+    <style name="tv_title_list_14" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_text</item>
         <item name="android:fontFamily">@font/sf_protext_bold</item>
     </style>
 
@@ -37,5 +45,90 @@
         <item name="android:fontFamily">@font/sf_protext_medium</item>
     </style>
 
+    <style name="text_tittle_style" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="text_content_style_grey" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="tv_title_white" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">@dimen/margin_32dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/sf_protext_medium</item>
+    </style>
+
+    <style name="tv_subtitle_white" parent="TextAppearance.AppCompat.Medium" >
+        <item name="android:textSize">@dimen/margin_16dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/sf_protext_medium</item>
+    </style>
+
+    <style name="text_tittle_list" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="text_content_style_black" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/black_text</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <!--    EDIT TEXT Style -->
+    <style name="edt_search" parent="Widget.AppCompat.EditText">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/black_text</item>
+        <item name="android:background">@drawable/bg_search</item>
+        <item name="android:hint">@string/txt_cari_disini</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:drawableEnd">@drawable/ic_searchtext</item>
+        <item name="android:ems">10</item>
+    </style>
+
+
+    <!--  bottom sheet dialog -->
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!--    Dropdown-->
+    <style name="DropdownStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/bg_line</item>
+        <item name="android:drawableEnd">@drawable/ic_dropdown</item>
+    </style>
+
+    <style name="DropdownUpload" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/bg_line</item>
+        <item name="android:drawableEnd">@drawable/ic_upload</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">start</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
 </resources>

@@ -1,7 +1,11 @@
 <resources>
+
     <string name="app_name">KMS_PT_POS_INDONESIA</string>
     <string name="tv_infinites">InfiniteS</string>
+    <string name="tv_title">InfiniteS</string>
     <string name="tv_wahana">Wahana</string>
+    <string name="tv_digilab">Digilab</string>
+    <string name="tv_multimedia">Multimedia</string>
     <string name="tv_artikel">Artikel</string>
     <string name="tv_karya_tulis_ilmiah">Karya Tulis / Ilmiah</string>
     <string name="tv_disemilasi">Diseminasi</string>
@@ -11,4 +15,49 @@
     <string name="tv_kategori">Kategori</string>
     <string name="txt_unduh">Unduh</string>
     <string name="content_description_image">image</string>
+
+    <string name="image_description">Image</string>
+    <string name="txt_login">Login</string>
+    <string name="txt_masukan_id_dan_password_anda">Masukan Id dan Password anda</string>
+    <string name="txt_username">Username</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_lupa_password">Lupa Password ? klik disini ... </string>
+    <string name="label_logout">Log out</string>
+    <string name="msg_logout">Please login login again</string>
+    <string name="label_ok">OK</string>
+    <string name="ERROR_FIELD_REQUIRED">Field Tidak Boleh Kosong</string>
+    <string name="txt_cari_disini">Cari disini ...</string>
+    <string name="txt_keluar">Keluar</string>
+    <string name="txt_logout_message">Apakah anda yakin keluar dari aplikasi?</string>
+    <string name="txt_btn_batal">Batal</string>
+    <string name="txt_konfirmasi">Konfirmasi</string>
+    <string name="text_batal">Batal</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_viewers">0 Views</string>
+    <string name="txt_description_title">Description</string>
+    <string name="txt_isidescription_title">Isi Description</string>
+    <string name="txt_comment_title">Comment</string>
+    <string name="tv_addcontent">Add Content</string>
+    <string name="tv_menu_inbox">Inbox</string>
+    <string name="tv_date_inbox">00 Days Ago</string>
+    <string name="txt_create_wahana">Create Wahana</string>
+    <string name="txt_create">Buat</string>
+    <string name="txt_create_title">Judul</string>
+    <string name="txt_value_create_title">Silahkan isi judul</string>
+    <string name="txt_create_desc">Deskripsi</string>
+    <string name="txt_value_create_desc">Silahkan isi deskripsi</string>
+    <string name="txt_image">Image</string>
+    <string name="txt_pilih_image">Pilih file</string>
+    <string name="txt_file">File</string>
+    <string name="txt_pilih_file">Pilih file</string>
+    <string name="txt_posting_comment">Posting komentar?</string>
+    <string name="text_oke">Oke</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="txt_oke_button">Oke</string>
+    <string name="text_berhasil">Berhasil</string>
+    <string name="txt_hint_writecomment">Write a comment . . .</string>
+    <string name="txt_konfirmasi_content">Apakah Anda yakin Data yang di isi sudah benar?</string>
+    <string name="txt_confirm_content">Content Baru Berhasil Di Buat</string>
+
+
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/inbox"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/tv_menu_inbox"
+        />
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="300"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/txt_logout"
+        app:showAsAction="never"
+        />
+</menu>
