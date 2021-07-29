@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SearchDigilabInteractor @Inject constructor(private val searchDigilabRepository : SearchDigilabRepository) : SearchDigilabUsecase {
 
-    override fun getSearchDigilab(type: String, search: String): Flow<Resource<List<Digilab>>> =
-        searchDigilabRepository.getSearchDigilab(type,search)
+    override fun getSearchDigilab(type: String, search: String, category: String): Flow<Resource<List<Digilab>>> =
+        searchDigilabRepository.getSearchDigilab(type,search,category)
 
 }

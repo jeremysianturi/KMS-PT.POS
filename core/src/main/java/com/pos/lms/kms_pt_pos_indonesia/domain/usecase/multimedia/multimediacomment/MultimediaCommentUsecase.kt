@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MultimediaCommentUsecase {
 
-    fun getMultimediaComment(order: String, knowledgeMultimedia: Int): Flow<Resource<List<MultimediaComment>>>
+    fun getMultimediaComment(order: String, knowledgeMultimedia: Int, beginDate : String, endDate : String): Flow<Resource<List<MultimediaComment>>>
 
     fun createMultimediaComment(multimediaCommentCreate: MultimediaCommentCreate) : Flow<Resource<Submit>>
 

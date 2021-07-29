@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.ItemParIdEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.LoginEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.SubmitEntity
+import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.category.CategoryEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.digilab.DigilabEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.digilab.SearchDigilabEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.digilab.digilabcomment.DigilabCommentEntity
@@ -38,7 +39,8 @@ import com.pos.lms.kms_pt_pos_indonesia.data.source.local.room.dao.*
         MultimediaEntity::class,
         SearchMultimediaEntity::class,
         MultimediaCommentEntity::class,
-        InboxEntity::class
+        InboxEntity::class,
+        CategoryEntity::class
     ],
     version = 2,
     exportSchema = false
@@ -70,5 +72,7 @@ abstract class KmsDatabase : RoomDatabase() {
     abstract fun multimediaCommentDao() : MultimediaCommentDao
 
     abstract fun inboxDao() : InboxDao
+
+    abstract fun categoryDao() : CategoryDao
 
 }

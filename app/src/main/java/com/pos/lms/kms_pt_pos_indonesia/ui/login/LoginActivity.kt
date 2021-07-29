@@ -80,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.edtPasswordLogin.text.toString()
 
         val loginPost = LoginPost(
-            applicationId = "7",
+            applicationId = "2",
             username = username,
             password = password
         )
@@ -94,8 +94,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
-
-                        Timber.d("Login Success")
 
                         mPreferenceEntity.token = login.data?.accessToken
 //                        mPreferenceEntity.token =

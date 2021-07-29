@@ -104,7 +104,6 @@ class CreateWahanaActivity : AppCompatActivity(), View.OnClickListener,HandlePat
 
         // get data intent
         activityFrom = intent.getStringExtra(ACTIVITY_FROM)
-        Timber.d("check value activity from : $activityFrom")
 
         // onclick
         binding.btnCreate.setOnClickListener(this)

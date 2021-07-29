@@ -30,6 +30,7 @@ dependencies {
 
     // custom spinner
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.9'
+
     // image picker
     implementation 'com.github.dhaval2404:imagepicker:1.7.1'
 

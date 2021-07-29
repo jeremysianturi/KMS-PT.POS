@@ -55,7 +55,6 @@ class DetailWahanaActivity : AppCompatActivity() {
     private lateinit var adapter : WahanaCommentAdapter
     private val wahanaCommentViewModel : WahanaCommentViewModel by viewModels()
 
-
     private lateinit var mPreference: UserPreference
     private lateinit var mPreferenceEntity: PreferenceEntity
 
@@ -88,6 +87,9 @@ class DetailWahanaActivity : AppCompatActivity() {
         // user preferences
         mPreference = UserPreference(this)
         mPreferenceEntity = mPreference.getPref()
+
+        // get current date
+        currentDate = CurrentDate.getToday()
 
         // get data intent
         dataWahana = intent.getParcelableExtra<Wahana>(EXTRA_DATA)
@@ -123,7 +125,7 @@ class DetailWahanaActivity : AppCompatActivity() {
         // method comment
         order = "desc"
         objidentifier = dataWahana!!.objectIndentifier ?: 0
-        setupObserver(order,idKnowledge!!)
+        currentDate?.let { setupObserver(order,idKnowledge!!, it,it) }
         buildList()
 
 
@@ -133,7 +135,6 @@ class DetailWahanaActivity : AppCompatActivity() {
 
         binding.tvPost.onThrottledClick {
             if (validationField()) {
-                Timber.d("masuk ke sini ke send comment : ${binding.etCommentWahana.text}")
                 isValidField()
             } else {
                 Toast.makeText(this, "Lengkapi data terlebih dahulu !", Toast.LENGTH_SHORT)
@@ -146,8 +147,6 @@ class DetailWahanaActivity : AppCompatActivity() {
     private fun collectData(materi: Wahana?) {
         if (materi != null) {
 
-
-            Timber.d("check isi thumbnailnya : ${materi.thumbnail}")
             binding.ivContentDetailwahana.loadImage(this,materi.thumbnail)
             binding.tvContenttitle.text = materi.cases
             binding.tvNameDetailwahana.text = materi.creator
@@ -185,9 +184,9 @@ class DetailWahanaActivity : AppCompatActivity() {
 
     }
 
-    private fun setupObserver(order: String, knowledgeWahana: Int) {
-        wahanaCommentViewModel.getWahanaComment(order,knowledgeWahana).observe(this, { data ->
-            Timber.tag(tag).d("observer_wahanacomment $data")
+    private fun setupObserver(order: String, knowledgeWahana: Int, beginDate : String, endDate : String) {
+        wahanaCommentViewModel.getWahanaComment(order,knowledgeWahana,beginDate,endDate).observe(this, { data ->
+            Timber.tag(tag).d("observer_wahanacomment${data}")
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressbarCreatewahana.visibility = View.VISIBLE
@@ -296,7 +295,7 @@ class DetailWahanaActivity : AppCompatActivity() {
                         binding.progressbarCreatewahana.visibility = View.GONE
                         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                         binding.etCommentWahana.text.clear()
-                        setupObserver(order,objidentifier)
+                        currentDate?.let { setupObserver(order,objidentifier, it,it) }
                         buildList()
 
 //                        popupInformation()

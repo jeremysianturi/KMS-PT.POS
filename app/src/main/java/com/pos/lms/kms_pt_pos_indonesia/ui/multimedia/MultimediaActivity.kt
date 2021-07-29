@@ -47,7 +47,6 @@ class MultimediaActivity : AppCompatActivity() {
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
         type = intent.getStringExtra("type").toString()
-        Timber.d("tes value type : $type")
 
         // onclick
         onclick()
@@ -60,10 +59,10 @@ class MultimediaActivity : AppCompatActivity() {
 //            multimediaViewModel.searchQuery.value = text.toString()
 //        }
 
+
         // search dari api
         binding.layoutToolbar.edtSearch.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                Timber.d("check char search multimedia : ${binding.layoutToolbar.edtSearch.text.toString()}")
 
                 setupSearchObserver(type,binding.layoutToolbar.edtSearch.text.toString())
                 buildList()
@@ -123,7 +122,6 @@ class MultimediaActivity : AppCompatActivity() {
     private fun setupObserver(typeClicked : String) {
 
         multimediaViewModel.getMultimedia(typeClicked).observe(this, { data ->
-            Timber.tag(tag).d("observer_multimedia $data")
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressBarProposal.visibility = View.VISIBLE
@@ -155,7 +153,7 @@ class MultimediaActivity : AppCompatActivity() {
     private fun setupSearchObserver(typeClicked: String, search: String) {
 
         multimediaViewModel.getSearchMultimedia(typeClicked,search).observe(this, { data ->
-            Timber.tag(tag).d("observer_searchmultimedia $data")
+
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressBarProposal.visibility = View.VISIBLE

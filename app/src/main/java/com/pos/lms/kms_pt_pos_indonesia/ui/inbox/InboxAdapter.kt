@@ -12,6 +12,7 @@ import com.pos.lms.kms_pt_pos_indonesia.domain.model.Wahana
 import com.pos.lms.kms_pt_pos_indonesia.helper.DateTimeConverter
 import com.pos.lms.kms_pt_pos_indonesia.helper.loadImage
 import com.pos.lms.kms_pt_pos_indonesia.ui.wahana.WahanaAdapter
+import timber.log.Timber
 
 class InboxAdapter : RecyclerView.Adapter<InboxAdapter.UserViewHolder>() {
 

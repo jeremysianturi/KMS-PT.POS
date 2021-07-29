@@ -37,7 +37,8 @@
         <activity
             android:name=".ui.wahana.WahanaActivity"
             android:theme="@style/Theme.KMS_PT_POS_INDONESIA.NoActionBar" />
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.home.HomeActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".MainActivity" />
     </application>
 

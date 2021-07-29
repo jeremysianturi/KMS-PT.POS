@@ -6,4 +6,5 @@ data class ListWahanaResponse (
 
     @field:SerializedName("data")
     val data: List<WahanaResponse>
+
         )

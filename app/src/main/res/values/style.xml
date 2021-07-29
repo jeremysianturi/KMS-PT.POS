@@ -126,9 +126,36 @@
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/orange_500</item>
+        <item name="colorPrimaryDark">@color/orange_700</item>
+        <item name="colorAccent">@color/orange_500</item>
+        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+    </style>
+
+
+<!--        Home Gear Option-->
+    <!-- Style to replace actionbar overflow icon. set item 'android:actionOverflowButtonStyle' in AppTheme -->
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_setting</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+        <item name="android:contentDescription">"OnCreateOptionMenu"</item>
+    </style>
+
+    <!--    spinner add data personal & family-->
+    <style name="textview_dropdown" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:drawableEnd">@drawable/arrow_down_forspinner</item>
+        <item name="android:fontFamily">@font/sf_protext_medium</item>
+        <item name="android:textColor">@color/black_text_tittle_list</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

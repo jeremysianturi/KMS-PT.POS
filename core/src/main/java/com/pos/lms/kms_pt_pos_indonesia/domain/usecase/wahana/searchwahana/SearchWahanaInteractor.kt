@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class SearchWahanaInteractor @Inject constructor(private val searchWahanaRepository : SearchWahanaRepository) : SearchWahanaUsecase {
 
-    override fun getSearchWahana(type: String, search: String): Flow<Resource<List<Wahana>>> =
-        searchWahanaRepository.getSearchWahana(type,search)
+    override fun getSearchWahana(type: String, search: String, category: String): Flow<Resource<List<Wahana>>> =
+        searchWahanaRepository.getSearchWahana(type,search,category)
 
 
 }

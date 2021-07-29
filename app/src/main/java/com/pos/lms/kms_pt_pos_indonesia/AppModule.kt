@@ -1,5 +1,7 @@
 package com.pos.lms.kms_pt_pos_indonesia
 
+import com.pos.lms.kms_pt_pos_indonesia.domain.usecase.category.CategoryInteractor
+import com.pos.lms.kms_pt_pos_indonesia.domain.usecase.category.CategoryUsecase
 import com.pos.lms.kms_pt_pos_indonesia.domain.usecase.digilab.DigilabInteractor
 import com.pos.lms.kms_pt_pos_indonesia.domain.usecase.digilab.DigilabUsecase
 import com.pos.lms.kms_pt_pos_indonesia.domain.usecase.digilab.digilabcomment.DigilabCommentInteractor
@@ -28,11 +30,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
-
-/**
- * Created by Muhammad Zaim Milzam on 19/03/21.
- * linkedin : Muhammad Zaim Milzam
- */
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -73,5 +70,8 @@ abstract class AppModule {
 
     @Binds
     abstract fun provideInboxUseCase(inboxInteractor : InboxInteractor) : InboxUsecase
+
+    @Binds
+    abstract fun provideCategoryUseCase(categoryInteractor : CategoryInteractor) : CategoryUsecase
 
 }

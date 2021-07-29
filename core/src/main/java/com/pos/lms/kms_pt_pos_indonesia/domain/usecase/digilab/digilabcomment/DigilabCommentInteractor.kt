@@ -15,8 +15,8 @@ import javax.inject.Inject
 class DigilabCommentInteractor @Inject constructor(private val digilabCommentRepository : DigilabCommentRepository) :
     DigilabCommentUsecase {
 
-    override fun getDigilabComment(order: String, knowledgeDigilab: Int): Flow<Resource<List<DigilabComment>>> =
-        digilabCommentRepository.getDigilabComment(order,knowledgeDigilab)
+    override fun getDigilabComment(order: String, knowledgeDigilab: Int, beginDate : String, endDate : String): Flow<Resource<List<DigilabComment>>> =
+        digilabCommentRepository.getDigilabComment(order,knowledgeDigilab,beginDate,endDate)
 
     override fun createDigilabComment(digilabCommentCreate: DigilabCommentCreate): Flow<Resource<Submit>> =
         digilabCommentRepository.createDigilabComment(digilabCommentCreate)

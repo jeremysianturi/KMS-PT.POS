@@ -22,7 +22,7 @@ class SearchWahanaRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : ISearchWahanaRepository {
 
-    override fun getSearchWahana(type: String, search: String): Flow<Resource<List<Wahana>>> =
+    override fun getSearchWahana(type: String, search: String, category: String): Flow<Resource<List<Wahana>>> =
         object :
             NetworkBoundResourceWithDeleteLocalData<List<Wahana>, List<SearchWahanaResponse>>() {
 
@@ -35,7 +35,7 @@ class SearchWahanaRepository @Inject constructor(
             override fun shouldFetch(data: List<Wahana>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<SearchWahanaResponse>>> =
-                remoteDataSource.getSearchWahana(type,search)
+                remoteDataSource.getSearchWahana(type,search,category)
 
             override suspend fun saveCallResult(data: List<SearchWahanaResponse>) {
                 val list = DataMapperSearchWahana.mapResponsetoEntities(data)

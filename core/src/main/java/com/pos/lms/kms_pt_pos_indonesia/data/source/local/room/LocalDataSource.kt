@@ -3,6 +3,7 @@ package com.pos.lms.kms_pt_pos_indonesia.data.source.local.room
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.ItemParIdEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.LoginEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.SubmitEntity
+import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.category.CategoryEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.digilab.DigilabEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.digilab.SearchDigilabEntity
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.entity.digilab.digilabcomment.DigilabCommentEntity
@@ -38,7 +39,8 @@ class LocalDataSource @Inject constructor(
     private val mMultimediaDao: MultimediaDao,
     private val mSearchMultimediaDao: SearchMultimediaDao,
     private val mMultimediaCommentDao: MultimediaCommentDao,
-    private val mInboxDao: InboxDao
+    private val mInboxDao: InboxDao,
+    private val mCategoryDao: CategoryDao
     ) {
 
     // login
@@ -140,7 +142,7 @@ class LocalDataSource @Inject constructor(
     // --------------------------------------- Multimedia ----------------------------------------------
 
 
-
+    // --------------------------------------- Inbox ----------------------------------------------
     // inbox
     fun getInbox(): Flow<List<InboxEntity>> = mInboxDao.getInbox()
     suspend fun insertInbox(inbox : List<InboxEntity>) = mInboxDao.insertAndDeleteInbox(inbox)
@@ -149,5 +151,17 @@ class LocalDataSource @Inject constructor(
 
     fun getSearchInbox(search: String): Flow<List<InboxEntity>> = mInboxDao.getSearchInbox(search)
     // inbox
+    // --------------------------------------- Inbox ----------------------------------------------
+
+
+    // --------------------------------------- Category ----------------------------------------------
+    // category
+    fun getCategory(): Flow<List<CategoryEntity>> = mCategoryDao.getCategory()
+    suspend fun insertCategory(category : List<CategoryEntity>) = mCategoryDao.insertAndDeleteCategory(category)
+
+    suspend fun deleteCategory() = mCategoryDao.deleteCategory()
+    // category
+    // --------------------------------------- Category ----------------------------------------------
+
 
 }

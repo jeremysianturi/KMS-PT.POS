@@ -1,12 +1,15 @@
 package com.pos.lms.kms_pt_pos_indonesia.ui.digilab
 
+import `in`.galaxyofandroid.spinerdialog.SpinnerDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,6 +18,8 @@ import com.bumptech.glide.Glide
 import com.pos.lms.kms_pt_pos_indonesia.R
 import com.pos.lms.kms_pt_pos_indonesia.data.Resource
 import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityDigilabBinding
+import com.pos.lms.kms_pt_pos_indonesia.domain.model.CategoryList
+import com.pos.lms.kms_pt_pos_indonesia.helper.CurrentDate
 import com.pos.lms.kms_pt_pos_indonesia.ui.digilab.detaildigilab.DetailDigilabActivity
 import com.pos.lms.kms_pt_pos_indonesia.ui.wahana.WahanaAdapter
 import com.pos.lms.kms_pt_pos_indonesia.ui.wahana.WahanaViewModel
@@ -35,10 +40,16 @@ class DigilabActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDigilabBinding
     private lateinit var adapter : DigilabAdapter
-
     private val digilabViewModel : DigilabViewModel by viewModels()
 
     private var type : String = ""
+
+    private lateinit var dataCategory : CategoryList
+    private lateinit var listCodeCategory : ArrayList<String>
+    private lateinit var listNameCategory : ArrayList<String>
+    private val listDataCategory = ArrayList<CategoryList>()
+    private lateinit var listDataCategorySpinner : ArrayList<String>
+    private var codeChoosen : String? = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +58,15 @@ class DigilabActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         type = intent.getStringExtra("type").toString()
-        Timber.d("tes value type : $type")
+
+        //biar keyboard ga lgsg popup
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
         // setup toolbar
         toolbarSetup()
+
+        // set filter category to visible
+        binding.layoutAddContent.spinnerCategory.visibility = View.VISIBLE
 
         // onclick
         onclick()
@@ -63,9 +79,8 @@ class DigilabActivity : AppCompatActivity() {
         // search dari api
         binding.layoutToolbar.edtSearch.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                Timber.d("check char search digilab : ${binding.layoutToolbar.edtSearch.text.toString()}")
 
-                setupSearchObserver(type,binding.layoutToolbar.edtSearch.text.toString())
+                setupSearchObserver(type,binding.layoutToolbar.edtSearch.text.toString(),codeChoosen!!)
                 buildList()
                 // hiding keyboard
                 binding.layoutToolbar.edtSearch.hideKeyboard()
@@ -76,16 +91,16 @@ class DigilabActivity : AppCompatActivity() {
         }
         // search dari api
 
-        // add content
-        binding.layoutAddContent.tvAddContent.setOnClickListener{
-            val mIntent = Intent(this, CreateWahanaActivity::class.java)
-            mIntent.putExtra(CreateWahanaActivity.ACTIVITY_FROM, "02")
-            startActivity(mIntent)
-        }
-
         // method
         setupObserver(type)
         buildList()
+
+        // for category
+        listCodeCategory = ArrayList<String>()
+        listNameCategory = ArrayList<String>()
+        listDataCategorySpinner = ArrayList<String>()
+        val today = CurrentDate.getToday()
+        getListCategory(today)
 
     }
 
@@ -106,16 +121,42 @@ class DigilabActivity : AppCompatActivity() {
 
     private fun onclick() {
         binding.apply {
-//            tvArticle.setOnClickListener {
-//                val mIntent = Intent(this@WahanaActivity, ArtikelActivity::class.java)
-//                startActivity(mIntent)
-//            }
-//            tvKaryaTulis.setOnClickListener {
-//                Toast.makeText(this@WahanaActivity, "fitur not ready", Toast.LENGTH_SHORT).show()
-//            }
-//            tvDiseminasi.setOnClickListener {
-//                Toast.makeText(this@WahanaActivity, "fitur not ready", Toast.LENGTH_SHORT).show()
-//            }
+
+            // add content
+            layoutAddContent.tvAddContent.setOnClickListener{
+                val mIntent = Intent(this@DigilabActivity, CreateWahanaActivity::class.java)
+                mIntent.putExtra(CreateWahanaActivity.ACTIVITY_FROM, "02")
+                startActivity(mIntent)
+            }
+
+            // filter catogory
+            layoutAddContent.spinnerCategory.setOnClickListener {
+
+                val spinnerDialogDataTypes = SpinnerDialog(
+                    this@DigilabActivity, listDataCategorySpinner, "Select Item :", R.style.DialogAnimations_SmileWindow
+                )
+
+                spinnerDialogDataTypes.bindOnSpinerListener { s, i ->
+                    val name = listDataCategory[i].dataName
+                    val code = listDataCategory[i].dataCode
+
+                    binding.layoutAddContent.spinnerCategory.text = name
+                    codeChoosen = code
+
+                    if (layoutToolbar.edtSearch.text.toString().equals("")){
+                        Timber.d("masuk ke sini gak ya")
+                        SimpleDialog.newInstance("", "Please input search character at least 2 words").show(supportFragmentManager, SimpleDialog.TAG)
+                    } else {
+                        setupSearchObserver(type,binding.layoutToolbar.edtSearch.text.toString(),codeChoosen!!)
+                    }
+
+                    Timber.d("code chosennya adalah : $codeChoosen")
+
+                }
+                spinnerDialogDataTypes.showSpinerDialog()
+
+            }
+
 
         }
     }
@@ -124,7 +165,6 @@ class DigilabActivity : AppCompatActivity() {
     private fun setupObserver(typeClicked : String) {
 
         digilabViewModel.getDigilab(typeClicked).observe(this, { data ->
-            Timber.tag(tag).d("observer_digilab $data")
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressBarProposal.visibility = View.VISIBLE
@@ -153,10 +193,59 @@ class DigilabActivity : AppCompatActivity() {
 //        })
     }
 
-    private fun setupSearchObserver(typeClicked: String, search: String) {
+    private fun getListCategory(date: String) {
 
-        digilabViewModel.getSearchDigilab(typeClicked,search).observe(this, { data ->
-            Timber.tag(tag).d("observer_searchdigilab $data")
+        digilabViewModel.getCategory(date, date).observe(this, { data ->
+
+            Timber.d("check isi category : ${data.data}")
+
+            if (data != null) {
+                when (data) {
+                    is Resource.Loading -> { }
+                    is Resource.Success -> {
+
+                        listCodeCategory.clear()
+                        listNameCategory.clear()
+
+                        // for adding "all categories" text
+                        var code = "-"
+                        var name = "All Categories"
+
+                        dataCategory = CategoryList(name, code)
+                        listDataCategory.add(dataCategory)
+                        listDataCategorySpinner.add(name)
+                        // for adding "all categories" text
+
+
+                        for (i in 0 until data.data!!.size) {
+
+                            code = data.data!![i].id
+                            name = data.data!![i].value
+
+                            dataCategory = CategoryList(name, code)
+                            listDataCategory.add(dataCategory)
+                            listDataCategorySpinner.add(name)
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        val message = ErrorMessageSplit.message(data.message.toString())
+                        val code = ErrorMessageSplit.code(data.message.toString())
+//                        SimpleDialog.newInstance(code, message)
+//                            .show(supportFragmentManager, SimpleDialog.TAG)
+                        ErrorBottomSheet.instance(code, message)
+                            .show(supportFragmentManager, ErrorBottomSheet.TAG)
+                    }
+                }
+
+            }
+
+        })
+    }
+
+    private fun setupSearchObserver(typeClicked: String, search: String, category: String) {
+
+        digilabViewModel.getSearchDigilab(typeClicked,search,category).observe(this, { data ->
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressBarProposal.visibility = View.VISIBLE

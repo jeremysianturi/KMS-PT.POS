@@ -31,7 +31,7 @@ class WahanaCommentRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : IWahanaCommentRepository {
 
-    override fun getWahanaComment(order: String, knowledgeWahana: Int): Flow<Resource<List<WahanaComment>>> =
+    override fun getWahanaComment(order: String, knowledgeWahana: Int, beginDate : String, endDate : String): Flow<Resource<List<WahanaComment>>> =
         object :
             NetworkBoundResourceWithDeleteLocalData<List<WahanaComment>, List<WahanaCommentResponse>>() {
 
@@ -44,7 +44,7 @@ class WahanaCommentRepository @Inject constructor(
             override fun shouldFetch(data: List<WahanaComment>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<WahanaCommentResponse>>> =
-                remoteDataSource.getWahanaComment(order,knowledgeWahana)
+                remoteDataSource.getWahanaComment(order,knowledgeWahana,beginDate,endDate)
 
             override suspend fun saveCallResult(data: List<WahanaCommentResponse>) {
                 val list = DataMapperWahanaComment.mapResponsetoEntities(data)

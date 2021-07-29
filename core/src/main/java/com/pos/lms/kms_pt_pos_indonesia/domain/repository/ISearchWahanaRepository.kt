@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ISearchWahanaRepository {
 
-    fun getSearchWahana(type: String, search : String) : Flow<Resource<List<Wahana>>>
+    fun getSearchWahana(type: String, search : String, category: String) : Flow<Resource<List<Wahana>>>
 
 
 }

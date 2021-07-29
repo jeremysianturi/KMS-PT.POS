@@ -25,6 +25,7 @@ import com.pos.lms.kms_pt_pos_indonesia.data.Resource
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.post.MultimediaCommentCreate
 import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityDetailMultimediaBinding
 import com.pos.lms.kms_pt_pos_indonesia.domain.model.Multimedia
+import com.pos.lms.kms_pt_pos_indonesia.helper.CurrentDate
 import com.pos.lms.kms_pt_pos_indonesia.helper.Debounce.onThrottledClick
 import com.pos.lms.kms_pt_pos_indonesia.helper.loadImage
 import com.pos.lms.kms_pt_pos_indonesia.ui.multimedia.detailmultimedia.detailmultimedia.MultimediaCommentAdapter
@@ -82,6 +83,9 @@ class DetailMultimediaActivity : AppCompatActivity() {
         mPreference = UserPreference(this)
         mPreferenceEntity = mPreference.getPref()
 
+        // get current date
+        currentDate = CurrentDate.getToday()
+
         dataMultimedia = intent.getParcelableExtra<Multimedia>(DetailMultimediaActivity.EXTRA_DATA)
         val idKnowledge = dataMultimedia?.idKnowledge
         val buscd = dataMultimedia?.buscd
@@ -118,13 +122,12 @@ class DetailMultimediaActivity : AppCompatActivity() {
         // method comment
         order = "desc"
         objidentifier = dataMultimedia!!.objectIndentifier ?: 0
-        setupObserver(order,idKnowledge!!)
+        currentDate?.let { setupObserver(order,idKnowledge!!, it,it) }
         buildList()
 
         // post comment
         binding.tvPost.onThrottledClick {
             if (validationField()) {
-                Timber.d("masuk ke sini ke send comment : ${binding.etCommentMultimedia.text}")
                 isValidField()
             } else {
                 Toast.makeText(this, "Lengkapi data terlebih dahulu !", Toast.LENGTH_SHORT)
@@ -136,8 +139,6 @@ class DetailMultimediaActivity : AppCompatActivity() {
     private fun collectData(materi: Multimedia?) {
         if (materi != null) {
 
-
-            Timber.d("check isi thumbnailnya : ${materi.thumbnail}")
             binding.ivContentDetailmultimedia.loadImage(this,materi.thumbnail)
             binding.tvContenttitle.text = materi.cases
             binding.tvNameDetailmultimedia.text = materi.creator
@@ -175,9 +176,9 @@ class DetailMultimediaActivity : AppCompatActivity() {
 
     }
 
-    private fun setupObserver(order: String, knowledgeMultimedia: Int) {
-        multimediaCommentViewModel.getMultimediaComment(order,knowledgeMultimedia).observe(this, { data ->
-            Timber.tag(tag).d("observer_multimediacomment $data")
+    private fun setupObserver(order: String, knowledgeMultimedia: Int, beginDate : String, endDate : String) {
+        multimediaCommentViewModel.getMultimediaComment(order,knowledgeMultimedia,beginDate,endDate).observe(this, { data ->
+
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressbarCreatemultimedia.visibility = View.VISIBLE
@@ -286,7 +287,7 @@ class DetailMultimediaActivity : AppCompatActivity() {
                         binding.progressbarCreatemultimedia.visibility = View.GONE
                         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                         binding.etCommentMultimedia.text.clear()
-                        setupObserver(order,objidentifier)
+                        currentDate?.let { setupObserver(order,objidentifier, it,it) }
                         buildList()
 
 //                        popupInformation()

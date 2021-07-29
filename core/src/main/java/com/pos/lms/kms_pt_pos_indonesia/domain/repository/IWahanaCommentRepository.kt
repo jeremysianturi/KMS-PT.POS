@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IWahanaCommentRepository {
 
-    fun getWahanaComment(order: String, knowledgeWahana: Int) : Flow<Resource<List<WahanaComment>>>
+    fun getWahanaComment(order: String, knowledgeWahana: Int,  beginDate : String, endDate : String) : Flow<Resource<List<WahanaComment>>>
 
     fun createWahanaComment(wahanaCommentCreate: WahanaCommentCreate) : Flow<Resource<Submit>>
 

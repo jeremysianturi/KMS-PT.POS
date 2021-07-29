@@ -26,7 +26,7 @@ class SearchDigilabRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : ISearchDigilabRepository {
 
-    override fun getSearchDigilab(type: String, search: String): Flow<Resource<List<Digilab>>> =
+    override fun getSearchDigilab(type: String, search: String, category: String): Flow<Resource<List<Digilab>>> =
         object :
             NetworkBoundResourceWithDeleteLocalData<List<Digilab>, List<SearchDigilabResponse>>() {
 
@@ -39,7 +39,7 @@ class SearchDigilabRepository @Inject constructor(
             override fun shouldFetch(data: List<Digilab>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<SearchDigilabResponse>>> =
-                remoteDataSource.getSearchDigilab(type,search)
+                remoteDataSource.getSearchDigilab(type,search,category)
 
             override suspend fun saveCallResult(data: List<SearchDigilabResponse>) {
                 val list = DataMapperSearchDigilab.mapResponsetoEntities(data)

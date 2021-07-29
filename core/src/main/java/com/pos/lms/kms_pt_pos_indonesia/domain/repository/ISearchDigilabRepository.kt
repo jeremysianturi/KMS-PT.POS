@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ISearchDigilabRepository {
 
-    fun getSearchDigilab(type: String, search : String) : Flow<Resource<List<Digilab>>>
+    fun getSearchDigilab(type: String, search : String, category: String) : Flow<Resource<List<Digilab>>>
 
 }

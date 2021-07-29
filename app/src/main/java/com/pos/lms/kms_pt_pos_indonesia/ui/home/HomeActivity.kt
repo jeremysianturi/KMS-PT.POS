@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.pos.lms.kms_pt_pos_indonesia.R
 import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityHomeBinding
@@ -44,6 +45,13 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // actionbar
+        val actionbar = supportActionBar
+        actionbar?.title = "Main Menu"
+        actionbar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        actionbar?.setCustomView(R.layout.actionbar_layout)
+
+
         mPreference = UserPreference(this)
         mPreferenceEntity = mPreference.getPref()
 
@@ -66,7 +74,7 @@ class HomeActivity : AppCompatActivity() {
         if (id == R.id.logout){
             popupConfirm()
             return true
-        } else if (id == R.id.inbox){
+        } else if (id == R.id.notification){
             goToInbox()
             return true
         }  else {

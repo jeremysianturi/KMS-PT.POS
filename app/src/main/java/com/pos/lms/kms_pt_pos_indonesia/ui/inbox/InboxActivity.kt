@@ -38,7 +38,9 @@ class InboxActivity : AppCompatActivity() {
         binding = ActivityInboxBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // navigate back
+        // actionbar
+        val actionbar = supportActionBar
+        actionbar?.title = "Notification"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         // onclick
@@ -62,7 +64,7 @@ class InboxActivity : AppCompatActivity() {
     private fun setupObserver() {
 
         wahanaViewModel.getInbox("").observe(this, { data ->
-            Timber.tag(tag).d("observer_inbox $data")
+
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressBarProposal.visibility = View.VISIBLE

@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 class WahanaCommentInteractor @Inject constructor(private val wahanaCommentRepository : WahanaCommentRepository) : WahanaCommentUsecase {
 
-    override fun getWahanaComment(order: String, knowledgeWahana: Int): Flow<Resource<List<WahanaComment>>> =
-        wahanaCommentRepository.getWahanaComment(order,knowledgeWahana)
+    override fun getWahanaComment(order: String, knowledgeWahana: Int, beginDate : String, endDate : String): Flow<Resource<List<WahanaComment>>> =
+        wahanaCommentRepository.getWahanaComment(order,knowledgeWahana,beginDate,endDate)
 
     override fun createWahanaComment(wahanaCommentCreate: WahanaCommentCreate): Flow<Resource<Submit>> =
         wahanaCommentRepository.createWahanaComment(wahanaCommentCreate)

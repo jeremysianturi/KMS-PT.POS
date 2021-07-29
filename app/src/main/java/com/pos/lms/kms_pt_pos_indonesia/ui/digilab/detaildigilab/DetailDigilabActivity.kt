@@ -28,6 +28,7 @@ import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityDetailDigilabBinding
 import com.pos.lms.kms_pt_pos_indonesia.databinding.ActivityDetailWahanaBinding
 import com.pos.lms.kms_pt_pos_indonesia.domain.model.Digilab
 import com.pos.lms.kms_pt_pos_indonesia.domain.model.Wahana
+import com.pos.lms.kms_pt_pos_indonesia.helper.CurrentDate
 import com.pos.lms.kms_pt_pos_indonesia.helper.Debounce.onThrottledClick
 import com.pos.lms.kms_pt_pos_indonesia.helper.loadImage
 import com.pos.lms.kms_pt_pos_indonesia.ui.digilab.detaildigilab.comment.DigilabCommentAdapter
@@ -88,11 +89,13 @@ class DetailDigilabActivity : AppCompatActivity() {
         mPreference = UserPreference(this)
         mPreferenceEntity = mPreference.getPref()
 
+        // get current date
+        currentDate = CurrentDate.getToday()
+
         dataDigilab = intent.getParcelableExtra<Digilab>(DetailDigilabActivity.EXTRA_DATA)
         val idKnowledge = dataDigilab?.idKnowledge
         val buscd = dataDigilab?.buscd
         val fileType = dataDigilab?.address?.takeLast(4)
-        Timber.tag(tag).d("FileType : $fileType")
 
         binding.clDigilab1.setOnClickListener {
 
@@ -124,13 +127,12 @@ class DetailDigilabActivity : AppCompatActivity() {
         // method comment
         order = "desc"
         objidentifier = dataDigilab!!.objectIndentifier ?: 0
-        setupObserver(order,idKnowledge!!)
+        currentDate?.let { setupObserver(order,idKnowledge!!, it,it) }
         buildList()
 
         // post comment
         binding.tvPost.onThrottledClick {
             if (validationField()) {
-                Timber.d("masuk ke sini ke send comment : ${binding.etCommentDigilab.text}")
                 isValidField()
             } else {
                 Toast.makeText(this, "Lengkapi data terlebih dahulu !", Toast.LENGTH_SHORT)
@@ -143,7 +145,6 @@ class DetailDigilabActivity : AppCompatActivity() {
     private fun collectData(materi: Digilab?) {
         if (materi != null) {
 
-            Timber.d("check isi thumbnailnya : ${materi.thumbnail}")
             binding.ivContentDetaildigilab.loadImage(this,materi.thumbnail)
             binding.tvContenttitle.text = materi.cases
             binding.tvNameDetaildigilab.text = materi.creator
@@ -181,9 +182,8 @@ class DetailDigilabActivity : AppCompatActivity() {
 
     }
 
-    private fun setupObserver(order: String, knowledgeDigilab: Int) {
-        digilabCommentViewModel.getDigilabComment(order,knowledgeDigilab).observe(this, { data ->
-            Timber.tag(tag).d("observer_digilabcomment $data")
+    private fun setupObserver(order: String, knowledgeDigilab: Int, beginDate : String, endDate : String) {
+        digilabCommentViewModel.getDigilabComment(order,knowledgeDigilab,beginDate,endDate).observe(this, { data ->
             if (data != null) {
                 when (data) {
                     is Resource.Loading -> binding.progressbarCreatedigilab.visibility = View.VISIBLE
@@ -292,7 +292,7 @@ class DetailDigilabActivity : AppCompatActivity() {
                         binding.progressbarCreatedigilab.visibility = View.GONE
                         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                         binding.etCommentDigilab.text.clear()
-                        setupObserver(order,objidentifier)
+                        currentDate?.let { setupObserver(order,objidentifier, it,it) }
                         buildList()
 
 //                        popupInformation()

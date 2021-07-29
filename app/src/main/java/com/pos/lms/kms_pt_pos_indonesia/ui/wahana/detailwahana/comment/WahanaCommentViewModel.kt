@@ -12,8 +12,8 @@ class WahanaCommentViewModel @ViewModelInject constructor(
     private val wahanaCommentUsecase: WahanaCommentUsecase,
     ) : ViewModel(){
 
-    fun getWahanaComment(order: String, knowledgeWahana: Int) =
-        wahanaCommentUsecase.getWahanaComment(order,knowledgeWahana).asLiveData()
+    fun getWahanaComment(order: String, knowledgeWahana: Int, beginDate : String, endDate : String) =
+        wahanaCommentUsecase.getWahanaComment(order,knowledgeWahana,beginDate,endDate).asLiveData()
 
     fun createWahanaComment(createWahanaComment: WahanaCommentCreate) =
         wahanaCommentUsecase.createWahanaComment(createWahanaComment).asLiveData()

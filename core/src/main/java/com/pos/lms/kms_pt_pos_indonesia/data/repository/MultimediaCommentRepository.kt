@@ -33,7 +33,7 @@ class MultimediaCommentRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : IMultimediaCommentRepository {
 
-    override fun getMultimediaComment(order: String, knowledgeMultimedia: Int): Flow<Resource<List<MultimediaComment>>> =
+    override fun getMultimediaComment(order: String, knowledgeMultimedia: Int, beginDate : String, endDate : String): Flow<Resource<List<MultimediaComment>>> =
         object :
             NetworkBoundResourceWithDeleteLocalData<List<MultimediaComment>, List<MultimediaCommentResponse>>() {
 
@@ -46,7 +46,7 @@ class MultimediaCommentRepository @Inject constructor(
             override fun shouldFetch(data: List<MultimediaComment>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<MultimediaCommentResponse>>> =
-                remoteDataSource.getMultimediaComment(order,knowledgeMultimedia)
+                remoteDataSource.getMultimediaComment(order,knowledgeMultimedia,beginDate,endDate)
 
             override suspend fun saveCallResult(data: List<MultimediaCommentResponse>) {
                 val list = DataMapperMultimediaComment.mapResponsetoEntities(data)

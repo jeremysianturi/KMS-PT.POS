@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/inbox"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/tv_menu_inbox"
+        android:id="@+id/notification"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/tv_menu_notification"
         />
     <item
         android:id="@+id/logout"
         android:orderInCategory="300"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_setting"
         android:title="@string/txt_logout"
         app:showAsAction="never"
         />

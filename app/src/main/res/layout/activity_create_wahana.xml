@@ -84,11 +84,12 @@
                 android:id="@+id/et_desc_create_wahana"
                 style="@style/text_content_style_grey"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:hint="@string/txt_value_create_desc"
                 android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:textSize="@dimen/text_14" />
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/text_14"
+                android:gravity="top"/>
 
         </LinearLayout>
 

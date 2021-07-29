@@ -6,6 +6,7 @@ import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.post.MultimediaCommen
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.post.WahanaCommentCreate
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.LoginResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.SubmitResponse
+import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.articlecategory.ListCategoryResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.digilab.ListDigilabResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.digilab.digilabcomment.ListDigilabCommentResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.digilab.searchdigilab.ListSearchDigilabResponse
@@ -54,7 +55,8 @@ interface ApiService {
     @GET("kmsbe/api/search")
     suspend fun getSearchWahana(
         @Query("type") type: String,
-        @Query("q") search: String
+        @Query("q") search: String,
+        @Query("category") category: String
     ): ListSearchWahanaResponse
     // search wahana
 
@@ -62,7 +64,9 @@ interface ApiService {
     @GET("kmsbe/api/comment")
     suspend fun getWahanaComment(
         @Query("order[CHGDT]") order: String,
-        @Query("knowledge") knowledgeWahana: Int
+        @Query("knowledge") knowledgeWahana: Int,
+        @Query("begin_date_lte") beginDate: String,
+        @Query("end_date_gte") endDate: String
     ): ListWahanaCommentResponse
     // wahana comment
 
@@ -95,7 +99,8 @@ interface ApiService {
     @GET("kmsbe/api/search")
     suspend fun getSearchDigilab(
         @Query("type") type: String,
-        @Query("q") search: String
+        @Query("q") search: String,
+        @Query("category") category: String
     ): ListSearchDigilabResponse
     // search digilab
 
@@ -103,7 +108,9 @@ interface ApiService {
     @GET("kmsbe/api/comment")
     suspend fun getDigilabComment(
         @Query("order[CHGDT]") order: String,
-        @Query("knowledge") knowledgeDigilab: Int
+        @Query("knowledge") knowledgeDigilab: Int,
+        @Query("begin_date_lte") beginDate: String,
+        @Query("end_date_gte") endDate: String
     ): ListDigilabCommentResponse
     // digilab comment
 
@@ -136,7 +143,9 @@ interface ApiService {
     @GET("kmsbe/api/comment")
     suspend fun getMultimediaComment(
         @Query("order[CHGDT]") order: String,
-        @Query("knowledge") knowledgeMultimedia: Int
+        @Query("knowledge") knowledgeMultimedia: Int,
+        @Query("begin_date_lte") beginDate: String,
+        @Query("end_date_gte") endDate: String
     ): ListMultimediaCommentResponse
     // multimedia comment
 
@@ -156,4 +165,15 @@ interface ApiService {
     ): ListInboxResponse
     // inbox
     // --------------------------------------- INBOX ----------------------------------------------
+
+
+    // --------------------------------------- CATEGORY ----------------------------------------------
+    // get category
+    @GET("ldap/api/objects?include[]=business_code&order[BEGDA]=asc&object_type[]=CTCTN&per_page=999")
+    suspend fun getCategory(
+        @Query("begin_date_lte") beginDate: String,
+        @Query("end_date_gte") endDate: String,
+        ): ListCategoryResponse
+    // get category
+    // --------------------------------------- CATEGORY ----------------------------------------------
 }

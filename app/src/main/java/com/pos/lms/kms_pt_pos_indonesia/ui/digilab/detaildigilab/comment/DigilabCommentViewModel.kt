@@ -14,8 +14,8 @@ class DigilabCommentViewModel @ViewModelInject constructor(
     private val digilabCommentUsecase: DigilabCommentUsecase
 ) : ViewModel() {
 
-    fun getDigilabComment(order: String, knowledgeDigilab: Int) =
-        digilabCommentUsecase.getDigilabComment(order,knowledgeDigilab).asLiveData()
+    fun getDigilabComment(order: String, knowledgeDigilab: Int, beginDate : String, endDate : String) =
+        digilabCommentUsecase.getDigilabComment(order,knowledgeDigilab,beginDate,endDate).asLiveData()
 
     fun createDigilabComment(createDigilabComment: DigilabCommentCreate) =
         digilabCommentUsecase.createDigilabComment(createDigilabComment).asLiveData()

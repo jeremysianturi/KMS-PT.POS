@@ -15,8 +15,8 @@ import javax.inject.Inject
 class MultimediaCommentInteractor @Inject constructor(private val multimediaCommentRepository : MultimediaCommentRepository) :
     MultimediaCommentUsecase {
 
-    override fun getMultimediaComment(order: String, knowledgeMultimedia: Int): Flow<Resource<List<MultimediaComment>>> =
-        multimediaCommentRepository.getMultimediaComment(order,knowledgeMultimedia)
+    override fun getMultimediaComment(order: String, knowledgeMultimedia: Int, beginDate : String, endDate : String): Flow<Resource<List<MultimediaComment>>> =
+        multimediaCommentRepository.getMultimediaComment(order,knowledgeMultimedia,beginDate,endDate)
 
     override fun createMultimediaComment(multimediaCommentCreate: MultimediaCommentCreate): Flow<Resource<Submit>> =
         multimediaCommentRepository.createMultimediaComment(multimediaCommentCreate)

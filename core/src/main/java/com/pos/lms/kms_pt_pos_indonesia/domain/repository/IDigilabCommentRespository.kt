@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IDigilabCommentRespository {
 
-    fun getDigilabComment(order: String, knowledgeDigilab: Int) : Flow<Resource<List<DigilabComment>>>
+    fun getDigilabComment(order: String, knowledgeDigilab: Int, beginDate : String, endDate : String) : Flow<Resource<List<DigilabComment>>>
 
     fun createDigilabComment(digilabCommentCreate: DigilabCommentCreate) : Flow<Resource<Submit>>
 

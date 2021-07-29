@@ -39,7 +39,7 @@ class SplashScreen : AppCompatActivity() {
         if (!checkConnection) {
             Toast.makeText(this, "No Connection Detected", Toast.LENGTH_SHORT).show()
         } else {
-            Timber.d("checkConnectionClass : $checkConnection")
+
         }
 
         val splashTread: Thread = object : Thread() {

@@ -62,4 +62,7 @@ class DataBaseModule {
     @Provides
     fun provideInboxDao(database: KmsDatabase): InboxDao = database.inboxDao()
 
+    @Provides
+    fun provideCategoryDao(database: KmsDatabase): CategoryDao = database.categoryDao()
+
 }

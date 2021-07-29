@@ -32,7 +32,7 @@ class DigilabCommentRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : IDigilabCommentRespository {
 
-    override fun getDigilabComment(order: String, knowledgeDigilab: Int): Flow<Resource<List<DigilabComment>>> =
+    override fun getDigilabComment(order: String, knowledgeDigilab: Int, beginDate : String, endDate : String): Flow<Resource<List<DigilabComment>>> =
         object :
             NetworkBoundResourceWithDeleteLocalData<List<DigilabComment>, List<DigilabCommentResponse>>() {
 
@@ -45,7 +45,7 @@ class DigilabCommentRepository @Inject constructor(
             override fun shouldFetch(data: List<DigilabComment>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<DigilabCommentResponse>>> =
-                remoteDataSource.getDigilabComment(order,knowledgeDigilab)
+                remoteDataSource.getDigilabComment(order,knowledgeDigilab,beginDate,endDate)
 
             override suspend fun saveCallResult(data: List<DigilabCommentResponse>) {
                 val list = DataMapperDigilabComment.mapResponsetoEntities(data)

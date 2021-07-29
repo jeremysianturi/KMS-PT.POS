@@ -8,6 +8,7 @@ import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.post.MultimediaCommen
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.post.WahanaCommentCreate
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.LoginResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.SubmitResponse
+import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.articlecategory.CategoryResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.digilab.DigilabResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.digilab.digilabcomment.DigilabCommentResponse
 import com.pos.lms.kms_pt_pos_indonesia.data.source.remote.response.digilab.searchdigilab.SearchDigilabResponse
@@ -117,11 +118,12 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getSearchWahana(
         type : String,
-        search : String
+        search : String,
+        category : String
     ): Flow<ApiResponse<List<SearchWahanaResponse>>> {
         return flow {
             try {
-                val response = apiService.getSearchWahana(type,search)
+                val response = apiService.getSearchWahana(type,search,category)
                 val dataArray = response.data
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.data))
@@ -136,11 +138,13 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getWahanaComment(
         order : String,
-        knowledgeWahana : Int
+        knowledgeWahana : Int,
+        beginDate : String,
+        endDate : String
     ): Flow<ApiResponse<List<WahanaCommentResponse>>> {
         return flow {
             try {
-                val response = apiService.getWahanaComment(order,knowledgeWahana)
+                val response = apiService.getWahanaComment(order,knowledgeWahana,beginDate,endDate)
                 val dataArray = response.data
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.data))
@@ -210,11 +214,12 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getSearchDigilab(
         type : String,
-        search : String
+        search : String,
+        category: String
     ): Flow<ApiResponse<List<SearchDigilabResponse>>> {
         return flow {
             try {
-                val response = apiService.getSearchDigilab(type,search)
+                val response = apiService.getSearchDigilab(type,search,category)
                 val dataArray = response.data
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.data))
@@ -229,11 +234,13 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getDigilabComment(
         order : String,
-        knowledgeDigilab : Int
+        knowledgeDigilab : Int,
+        beginDate : String,
+        endDate : String
     ): Flow<ApiResponse<List<DigilabCommentResponse>>> {
         return flow {
             try {
-                val response = apiService.getDigilabComment(order,knowledgeDigilab)
+                val response = apiService.getDigilabComment(order,knowledgeDigilab,beginDate,endDate)
                 val dataArray = response.data
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.data))
@@ -303,11 +310,13 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getMultimediaComment(
         order : String,
-        knowledgeMultimedia : Int
+        knowledgeMultimedia : Int,
+        beginDate : String,
+        endDate : String
     ): Flow<ApiResponse<List<MultimediaCommentResponse>>> {
         return flow {
             try {
-                val response = apiService.getMultimediaComment(order,knowledgeMultimedia)
+                val response = apiService.getMultimediaComment(order,knowledgeMultimedia,beginDate,endDate)
                 val dataArray = response.data
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.data))
@@ -344,6 +353,27 @@ class RemoteDataSource @Inject constructor(
         return flow {
             try {
                 val response = apiService.getInbox()
+                val dataArray = response.data
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.data))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+
+    // --------------------------------------- Category ----------------------------------------------
+    suspend fun getCategory(
+        beginDate: String,
+        endDate: String
+    ): Flow<ApiResponse<List<CategoryResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getCategory(beginDate,endDate)
                 val dataArray = response.data
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.data))

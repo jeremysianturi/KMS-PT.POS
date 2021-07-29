@@ -9,11 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/spinner_category"
+            style="@style/textview_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginVertical="14dp"
+            android:layout_marginHorizontal="24dp"
+            android:padding="4dp"
+            android:text="@string/txt_all_spinner"
+            android:visibility="gone">
+        </TextView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_add_content"

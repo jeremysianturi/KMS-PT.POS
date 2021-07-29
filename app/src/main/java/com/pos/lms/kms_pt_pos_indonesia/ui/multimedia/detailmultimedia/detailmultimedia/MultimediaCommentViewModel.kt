@@ -14,8 +14,8 @@ class MultimediaCommentViewModel @ViewModelInject constructor(
     private val multimediaCommentUsecase: MultimediaCommentUsecase
 ) : ViewModel() {
 
-    fun getMultimediaComment(order: String, knowledgeMultimedia: Int) =
-        multimediaCommentUsecase.getMultimediaComment(order,knowledgeMultimedia).asLiveData()
+    fun getMultimediaComment(order: String, knowledgeMultimedia: Int, beginDate : String, endDate : String) =
+        multimediaCommentUsecase.getMultimediaComment(order,knowledgeMultimedia,beginDate,endDate).asLiveData()
 
     fun createMultimediaComment(createMultimediaComment: MultimediaCommentCreate) =
         multimediaCommentUsecase.createMultimediaComment(createMultimediaComment).asLiveData()
