@@ -1,6 +1,5 @@
 package com.pos.lms.kms_pt_pos_indonesia.data.repository
 
-import com.pos.lms.kms_pt_pos_indonesia.data.NetworkBoundResource
 import com.pos.lms.kms_pt_pos_indonesia.data.NetworkBoundResourceWithDeleteLocalData
 import com.pos.lms.kms_pt_pos_indonesia.data.Resource
 import com.pos.lms.kms_pt_pos_indonesia.data.source.local.room.LocalDataSource
@@ -24,7 +23,7 @@ import javax.inject.Singleton
 class WahanaRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    private val appExecutors: AppExecutors
+    private val appExexcutors: AppExecutors
 ) : IWahanaRepository {
 
     override fun getWahana(type: String): Flow<Resource<List<Wahana>>> =

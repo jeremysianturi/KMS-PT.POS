@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "Login")
 data class LoginEntity(
+
     @ColumnInfo(name = "accessToken")
     val accessToken: String? = "",
 
